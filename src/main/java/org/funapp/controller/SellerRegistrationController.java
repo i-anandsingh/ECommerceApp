@@ -20,7 +20,6 @@ public class SellerRegistrationController {
     @Autowired
     private  SellerRegistrationBusiness sellerRegistrationBusiness;
     private SellerRegistrationMapper sellerRegistrationMapper;
-
     @PostMapping("/seller-registration")
     public ResponseEntity<SellerRegistrationOutputDTO> registerSeller(
             @RequestBody SellerRegistrationRequestDTO requestDTO

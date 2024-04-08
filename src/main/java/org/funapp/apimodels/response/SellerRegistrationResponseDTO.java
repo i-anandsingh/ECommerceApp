@@ -13,10 +13,9 @@ public class SellerRegistrationResponseDTO {
     private String sellerId;
     private String sellerName;
     private String gstNumber;
-    private String gstAddress;
     private Integer pinCode;
     private String city;
     private String state;
     private String email;
-    private Integer phoneNumber;
+    private Long phoneNumber;
 }

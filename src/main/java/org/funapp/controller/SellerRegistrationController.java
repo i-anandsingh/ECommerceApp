@@ -1,7 +1,8 @@
 package org.funapp.controller;
 
-import org.funapp.apimodels.mappers.SellerRegistrationMapper;
+import org.funapp.apimodels.mappers.SellerRegistrationDataMapper;
 import org.funapp.apimodels.request.SellerRegistrationRequestDTO;
+import org.funapp.apimodels.response.SellerRegistrationResponseDTO;
 import org.funapp.service.business.SellerRegistrationBusiness;
 import org.funapp.service.models.request.SellerRegistrationInputDTO;
 import org.funapp.service.models.response.SellerRegistrationOutputDTO;
@@ -19,13 +20,15 @@ public class SellerRegistrationController {
 
     @Autowired
     private  SellerRegistrationBusiness sellerRegistrationBusiness;
-    private SellerRegistrationMapper sellerRegistrationMapper;
+    private SellerRegistrationDataMapper sellerRegistrationMapper = SellerRegistrationDataMapper.INSTANCE;
+
     @PostMapping("/seller-registration")
-    public ResponseEntity<SellerRegistrationOutputDTO> registerSeller(
+    public ResponseEntity<SellerRegistrationResponseDTO> registerSeller(
             @RequestBody SellerRegistrationRequestDTO requestDTO
     ){
         SellerRegistrationInputDTO inputDTO = sellerRegistrationMapper.mapRequestToInput(requestDTO);
         SellerRegistrationOutputDTO outputDTO = sellerRegistrationBusiness.doProcess(inputDTO);
-        return new ResponseEntity<>(outputDTO, HttpStatus.CREATED);
+        SellerRegistrationResponseDTO responseDTO = sellerRegistrationMapper.mapOutputToResponse(outputDTO);
+        return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
     }
 }

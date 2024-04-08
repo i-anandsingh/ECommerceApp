@@ -33,5 +33,5 @@ public class SellerRegistrationEntity {
     private String email;
 
     @Column(nullable = false)
-    private Integer phoneNumber;
+    private Long phoneNumber;
 }

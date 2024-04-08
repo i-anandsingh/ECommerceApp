@@ -16,6 +16,6 @@ public class SellerRegistrationRequestDTO {
     private String city;
     private String state;
     private String email;
-    private Integer phoneNumber;
+    private Long phoneNumber;
 
 }

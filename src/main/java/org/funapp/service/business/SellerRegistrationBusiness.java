@@ -14,18 +14,21 @@ import javax.validation.Valid;
 @Service
 public class SellerRegistrationBusiness {
 
-    @Autowired
-    private SellerRegistrationRepository sellerRegistrationRepository;
+    private final SellerRegistrationRepository sellerRegistrationRepository;
+    private SellerRegistrationDataMapper sellerRegistrationDataMapper = SellerRegistrationDataMapper.INSTANCE;
+    private final IdGenerator idGenerator;
 
     @Autowired
-    private IdGenerator idGenerator;
-
-    private SellerRegistrationDataMapper sellerRegistrationMapper = SellerRegistrationDataMapper.INSTANCE;
+    public SellerRegistrationBusiness(SellerRegistrationRepository sellerRegistrationRepository,
+                                      IdGenerator idGenerator) {
+        this.idGenerator = idGenerator;
+        this.sellerRegistrationRepository = sellerRegistrationRepository;
+    }
 
     public SellerRegistrationOutputDTO doProcess(@Valid SellerRegistrationInputDTO inputDTO){
-        SellerRegistrationEntity entity = sellerRegistrationMapper.mapInputToEntity(inputDTO);
+        SellerRegistrationEntity entity = sellerRegistrationDataMapper.mapInputToEntity(inputDTO);
         entity.setSellerId(idGenerator.sellerIdGenerator());
         sellerRegistrationRepository.save(entity);
-        return sellerRegistrationMapper.mapEntityToOutput(entity);
+        return sellerRegistrationDataMapper.mapEntityToOutput(entity);
     }
 }

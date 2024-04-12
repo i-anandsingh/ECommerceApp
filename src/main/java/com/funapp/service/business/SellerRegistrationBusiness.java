@@ -3,8 +3,8 @@ package com.funapp.service.business;
 import com.funapp.service.models.request.SellerRegistrationInputDTO;
 import com.funapp.service.models.response.SellerRegistrationOutputDTO;
 import com.funapp.apimodels.mappers.SellerRegistrationDataMapper;
-import com.funapp.entity.SellerRegistrationEntity;
 import com.funapp.repository.SellerRegistrationRepository;
+import com.org.entity.SellerRegistrationEntity;
 import com.org.generator.IdGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,6 @@ public class SellerRegistrationBusiness {
     public SellerRegistrationOutputDTO doProcess(SellerRegistrationInputDTO inputDTO){
         SellerRegistrationEntity entity = sellerRegistrationDataMapper.mapInputToEntity(inputDTO);
         entity.setSellerId(idGenerator.sellerIdGenerator());
-        System.out.println("Id Generator Passed");
         sellerRegistrationRepository.save(entity);
         return sellerRegistrationDataMapper.mapEntityToOutput(entity);
     }

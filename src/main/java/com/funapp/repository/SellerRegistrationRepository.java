@@ -1,6 +1,6 @@
 package com.funapp.repository;
 
-import com.funapp.entity.SellerRegistrationEntity;
+import com.org.entity.SellerRegistrationEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

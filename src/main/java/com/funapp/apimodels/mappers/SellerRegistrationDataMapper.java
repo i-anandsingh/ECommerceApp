@@ -2,9 +2,9 @@ package com.funapp.apimodels.mappers;
 
 import com.funapp.apimodels.request.SellerRegistrationRequestDTO;
 import com.funapp.apimodels.response.SellerRegistrationResponseDTO;
-import com.funapp.entity.SellerRegistrationEntity;
 import com.funapp.service.models.request.SellerRegistrationInputDTO;
 import com.funapp.service.models.response.SellerRegistrationOutputDTO;
+import com.org.entity.SellerRegistrationEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;

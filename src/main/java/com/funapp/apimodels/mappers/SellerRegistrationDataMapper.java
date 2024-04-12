@@ -13,6 +13,7 @@ import org.mapstruct.factory.Mappers;
 @Mapper(unmappedSourcePolicy = ReportingPolicy.WARN, unmappedTargetPolicy = ReportingPolicy.WARN)
 public interface SellerRegistrationDataMapper {
     SellerRegistrationDataMapper INSTANCE = Mappers.getMapper(SellerRegistrationDataMapper.class);
+    @Mapping(target = "sellerId", ignore = true)
     SellerRegistrationInputDTO mapRequestToInput(SellerRegistrationRequestDTO requestDTO);
     @Mapping(target = "sellerId", ignore = true)
     SellerRegistrationEntity mapInputToEntity(SellerRegistrationInputDTO inputDTO);

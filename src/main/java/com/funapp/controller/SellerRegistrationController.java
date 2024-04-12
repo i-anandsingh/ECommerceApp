@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/v1/ecommerce")
 public class SellerRegistrationController {
+    private final SellerRegistrationBusiness sellerRegistrationBusiness;
+    private final SellerRegistrationDataMapper sellerRegistrationMapper = SellerRegistrationDataMapper.INSTANCE;
 
     @Autowired
-    private SellerRegistrationBusiness sellerRegistrationBusiness;
-    private SellerRegistrationDataMapper sellerRegistrationMapper = SellerRegistrationDataMapper.INSTANCE;
+    public SellerRegistrationController(SellerRegistrationBusiness sellerRegistrationBusiness) {
+        this.sellerRegistrationBusiness = sellerRegistrationBusiness;
+    }
 
     @PostMapping("/seller-registration")
     public ResponseEntity<SellerRegistrationResponseDTO> registerSeller(

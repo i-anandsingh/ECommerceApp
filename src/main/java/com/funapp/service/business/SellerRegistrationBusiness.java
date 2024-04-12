@@ -9,8 +9,6 @@ import com.funapp.repository.SellerRegistrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
-
 @Service
 public class SellerRegistrationBusiness {
 
@@ -24,7 +22,7 @@ public class SellerRegistrationBusiness {
         this.idGenerator = idGenerator;
     }
 
-    public SellerRegistrationOutputDTO doProcess(@Valid SellerRegistrationInputDTO inputDTO){
+    public SellerRegistrationOutputDTO doProcess(SellerRegistrationInputDTO inputDTO){
         SellerRegistrationEntity entity = sellerRegistrationDataMapper.mapInputToEntity(inputDTO);
         entity.setSellerId(idGenerator.sellerIdGenerator());
         sellerRegistrationRepository.save(entity);

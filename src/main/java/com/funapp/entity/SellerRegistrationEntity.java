@@ -1,14 +1,15 @@
 package com.funapp.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
-@Getter
-@Setter
-@Entity(name = "Seller_Details_Table")
+import java.util.Date;
+
+@Data
+@Entity(name = "seller_details_table")
+//@Table(name = "seller_details_table")
 public class SellerRegistrationEntity {
     @Id
     @Column(nullable = false)
@@ -34,4 +35,14 @@ public class SellerRegistrationEntity {
 
     @Column(nullable = false)
     private Long phoneNumber;
+
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Date createdAt;
+
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate
+    private Date updatedAt;
 }

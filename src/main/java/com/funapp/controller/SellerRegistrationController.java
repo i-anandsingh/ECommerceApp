@@ -25,6 +25,7 @@ public class SellerRegistrationController {
         this.sellerRegistrationBusiness = sellerRegistrationBusiness;
     }
 
+
     @PostMapping("/seller-registration")
     public ResponseEntity<SellerRegistrationResponseDTO> registerSeller(
             @RequestBody SellerRegistrationRequestDTO requestDTO

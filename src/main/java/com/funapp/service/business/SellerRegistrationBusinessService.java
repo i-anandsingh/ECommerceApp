@@ -12,14 +12,14 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class SellerRegistrationBusiness {
+public class SellerRegistrationBusinessService {
 
     private final SellerRegistrationRepository sellerRegistrationRepository;
     private final SellerRegistrationDataMapper sellerRegistrationDataMapper = SellerRegistrationDataMapper.INSTANCE;
     private final IdGenerator idGenerator;
 
     @Autowired
-    public SellerRegistrationBusiness(SellerRegistrationRepository sellerRegistrationRepository, IdGenerator idGenerator){
+    public SellerRegistrationBusinessService(SellerRegistrationRepository sellerRegistrationRepository, IdGenerator idGenerator){
         this.sellerRegistrationRepository = sellerRegistrationRepository;
         this.idGenerator = idGenerator;
     }

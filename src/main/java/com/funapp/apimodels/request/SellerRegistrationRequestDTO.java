@@ -17,5 +17,6 @@ public class SellerRegistrationRequestDTO {
     private String state;
     private String email;
     private Long phoneNumber;
+    private String password;
 
 }

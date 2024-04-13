@@ -11,11 +11,4 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SellerRegistrationOutputDTO {
     private String sellerId;
-    private String sellerName;
-    private String gstNumber;
-    private Integer pinCode;
-    private String city;
-    private String state;
-    private String email;
-    private Long phoneNumber;
 }

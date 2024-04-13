@@ -19,4 +19,5 @@ public interface SellerRegistrationDataMapper {
     SellerRegistrationEntity mapInputToEntity(SellerRegistrationInputDTO inputDTO);
     SellerRegistrationOutputDTO mapEntityToOutput(SellerRegistrationEntity entity);
     SellerRegistrationResponseDTO mapOutputToResponse(SellerRegistrationOutputDTO outputDTO);
+
 }

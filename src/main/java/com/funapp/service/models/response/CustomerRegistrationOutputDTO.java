@@ -13,13 +13,4 @@ import java.util.Date;
 @NoArgsConstructor
 public class CustomerRegistrationOutputDTO {
     private String customerId;
-    private String name;
-    private int age;
-    private Date dob;
-    private Long phoneNumber;
-    private String email;
-    private String address;
-    private int pincode;
-    private String state;
-    private String city;
 }

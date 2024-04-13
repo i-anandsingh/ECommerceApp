@@ -22,4 +22,6 @@ public class CustomerRegistrationInputDTO {
     private int pincode;
     private String state;
     private String city;
+    private String password;
+
 }

@@ -8,26 +8,31 @@ import com.org.entity.CustomerRegistrationEntity;
 import com.org.generator.IdGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 public class CustomerRegistrationBusinessService {
-    private final CustomerRegistrationDataMapper customerRegistrationDataMapper = CustomerRegistrationDataMapper.INSTANCE;
-    private final IdGenerator idGenerator;
     private final CustomerRegistrationRepository customerRegistrationRepository;
+    private final IdGenerator idGenerator;
+    private final PasswordEncoder passwordEncoder;
+    private final CustomerRegistrationDataMapper customerRegistrationDataMapper = CustomerRegistrationDataMapper.INSTANCE;
 
     @Autowired
     public CustomerRegistrationBusinessService (
             CustomerRegistrationRepository customerRegistrationRepository,
-            IdGenerator idGenerator) {
+            IdGenerator idGenerator,
+            PasswordEncoder passwordEncoder) {
         this.customerRegistrationRepository = customerRegistrationRepository;
         this.idGenerator = idGenerator;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public CustomerRegistrationOutputDTO doProcess(CustomerRegistrationInputDTO inputDTO){
         CustomerRegistrationEntity entity = customerRegistrationDataMapper.mapInputToEntity(inputDTO);
         entity.setCustomerId(idGenerator.customerIdGenerator());
+        entity.setPassword(passwordEncoder.encode(inputDTO.getPassword()));
         customerRegistrationRepository.save(entity);
         return customerRegistrationDataMapper.mapEntityToOutput(entity);
     }

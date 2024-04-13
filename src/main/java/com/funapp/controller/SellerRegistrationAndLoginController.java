@@ -1,17 +1,11 @@
 package com.funapp.controller;
 
-import com.funapp.apimodels.mappers.CustomerRegistrationDataMapper;
-import com.funapp.apimodels.request.CustomerRegistrationRequestDTO;
-import com.funapp.apimodels.request.SellerRegistrationRequestDTO;
-import com.funapp.apimodels.response.CustomerRegistrationResponseDTO;
-import com.funapp.apimodels.response.SellerRegistrationResponseDTO;
-import com.funapp.service.business.CustomerRegistrationBusinessService;
-import com.funapp.service.business.SellerRegistrationBusinessService;
-import com.funapp.service.models.request.CustomerRegistrationInputDTO;
-import com.funapp.service.models.request.SellerRegistrationInputDTO;
-import com.funapp.service.models.response.CustomerRegistrationOutputDTO;
-import com.funapp.service.models.response.SellerRegistrationOutputDTO;
 import com.funapp.apimodels.mappers.SellerRegistrationDataMapper;
+import com.funapp.apimodels.request.SellerRegistrationRequestDTO;
+import com.funapp.apimodels.response.SellerRegistrationResponseDTO;
+import com.funapp.service.business.SellerRegistrationBusinessService;
+import com.funapp.service.models.request.SellerRegistrationInputDTO;
+import com.funapp.service.models.response.SellerRegistrationOutputDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,18 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/v1/ecommerce")
-public class RegistrationController {
+public class SellerRegistrationAndLoginController {
     private final SellerRegistrationBusinessService sellerRegistrationBusinessService;
-    private final CustomerRegistrationBusinessService customerRegistrationBusinessService;
     private final SellerRegistrationDataMapper sellerRegistrationMapper = SellerRegistrationDataMapper.INSTANCE;
-    private final CustomerRegistrationDataMapper customerRegistrationDataMapper = CustomerRegistrationDataMapper.INSTANCE;
 
     @Autowired
-    public RegistrationController(
-            SellerRegistrationBusinessService sellerRegistrationBusinessService,
-            CustomerRegistrationBusinessService customerRegistrationBusinessService ) {
+    public SellerRegistrationAndLoginController(
+            SellerRegistrationBusinessService sellerRegistrationBusinessService ) {
         this.sellerRegistrationBusinessService = sellerRegistrationBusinessService;
-        this.customerRegistrationBusinessService = customerRegistrationBusinessService;
     }
 
 
@@ -47,13 +37,4 @@ public class RegistrationController {
         return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
     }
 
-    @PostMapping("/customer-registration")
-    public ResponseEntity<CustomerRegistrationResponseDTO> customerRegistration(
-            @RequestBody CustomerRegistrationRequestDTO requestDTO
-    ){
-        CustomerRegistrationInputDTO inputDTO = customerRegistrationDataMapper.mapRequestToInput(requestDTO);
-        CustomerRegistrationOutputDTO outputDTO = customerRegistrationBusinessService.doProcess(inputDTO);
-        CustomerRegistrationResponseDTO responseDTO = customerRegistrationDataMapper.mapOutputToResponse(outputDTO);
-        return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
-    }
 }

@@ -35,4 +35,6 @@ public class CustomerRegistrationAndLoginController {
         CustomerRegistrationResponseDTO responseDTO = customerRegistrationDataMapper.mapOutputToResponse(outputDTO);
         return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
     }
+
+
 }
